@@ -17,6 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://enhancementpeptide.com"),
   title: "ENHANCEMENT PEPTIDE | The New Era of Biohacking",
   description: "Enhancement Peptide is a premium research compound brand dedicated to precision, purity, and scientific biohacking excellence.",
   keywords: ["Peptide Research", "Retatrutide", "GHK-Cu", "Biohacking", "Janoshik Analytical", "Enhancement Peptide", "Purity >99%"],
@@ -31,7 +32,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ENHANCEMENT PEPTIDE - The New Era of Biohacking",
     description: "Premium research compound brand dedicated to precision, purity, and scientific excellence.",
-    images: ["/Peptide_hero.webp"],
+    images: [
+      {
+        url: "/Peptide_hero.webp",
+        width: 1200,
+        height: 630,
+        alt: "Enhancement Peptide Hero",
+      },
+    ],
     type: "website",
   },
   twitter: {

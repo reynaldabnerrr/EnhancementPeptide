@@ -195,16 +195,6 @@ export default function CompoundCatalog({ onOpenCalculator, onOpenInquiry }: Com
                         {product.subtitle}
                       </p>
 
-                      <div className="pt-1">
-                        <div className="inline-flex flex-wrap items-center justify-center sm:justify-start gap-2 p-2 rounded-xl bg-[#080A09] border border-[#1E2923] text-[11px] font-mono text-[#94A3B8]">
-                          <span className="flex items-center gap-1 text-white font-semibold">
-                            <Atom className="w-3.5 h-3.5 text-[#2CE58D]" />
-                            CAS: {product.casNo}
-                          </span>
-                          <span>•</span>
-                          <span className="text-[#CBD5E1] font-mono">{product.formula}</span>
-                        </div>
-                      </div>
                     </div>
                   </div>
 

@@ -29,30 +29,52 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Section Intersection Tracking
-      const sections = [
-        { id: "hero", offset: 0 },
-        { id: "specimen", el: document.getElementById("specimen") },
-        { id: "catalog", el: document.getElementById("catalog") },
-        { id: "calculator", el: document.getElementById("calculator") },
-        { id: "standards", el: document.getElementById("standards") },
-      ];
+      // Top of page edge case
+      if (window.scrollY < 100) {
+        setActiveSection("hero");
+        return;
+      }
 
-      const scrollPos = window.scrollY + 200;
+      // Bottom of page edge case
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+        setActiveSection("standards");
+        return;
+      }
+    };
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const sec = sections[i];
-        if (sec.el && sec.el.offsetTop <= scrollPos) {
-          setActiveSection(sec.id);
-          break;
-        } else if (i === 0 && window.scrollY < 300) {
-          setActiveSection("hero");
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    const sectionIds = ["hero", "specimen", "catalog", "calculator", "standards"];
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      // Filter visible entries
+      const visible = entries.filter((entry) => entry.isIntersecting);
+      if (visible.length > 0) {
+        // Select the section with highest visibility/ratio
+        visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (window.scrollY >= 100) {
+          setActiveSection(visible[0].target.id);
         }
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const observerOptions: IntersectionObserverInit = {
+      root: null,
+      rootMargin: "-15% 0px -40% 0px",
+      threshold: [0.1, 0.3, 0.6, 0.8],
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const navLinks = [
@@ -84,14 +106,14 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
     setMobileMenuOpen(false);
     setActiveSection(id);
 
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       const target = document.getElementById(id);
       if (target) {
-        const yOffset = -80;
+        const yOffset = -75;
         const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
       }
-    }, 50);
+    });
   };
 
   return (
