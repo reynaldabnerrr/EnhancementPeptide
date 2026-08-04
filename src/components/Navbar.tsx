@@ -56,6 +56,7 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
   }, []);
 
   const navLinks = [
+    { id: "hero", label: text("Beranda", "Home"), href: "#hero" },
     { id: "specimen", label: text("Tentang Peptida", "About Peptides"), href: "#specimen" },
     { id: "catalog", label: text("Katalog Produk", "Product Catalog"), href: "#catalog" },
     { id: "calculator", label: text("Kalkulator Dosis", "Dose Calculator"), href: "#calculator" },
