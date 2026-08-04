@@ -63,7 +63,7 @@ export default function StandardsGrid() {
               ISO 17025 ACCREDITED
             </h3>
             <p className="text-xs text-[#CBD5E1] leading-relaxed font-light">
-              Diuji menggunakan standar fasilitas laboratorium analisis terakreditasi internasional dengan jaminan presisi massa molekul.
+               {text("Pengujian mengikuti standar fasilitas analitis terakreditasi internasional untuk presisi massa molekul.", "Testing follows internationally accredited analytical facility standards for molecular mass precision.")}
             </p>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function StandardsGrid() {
             </div>
             <div>
               <span className="text-xs font-mono font-bold text-[#2CE58D] uppercase tracking-widest">
-                VERIFIKASI LABORATORIUM INDEPENDEN
+                 {text("VERIFIKASI LABORATORIUM INDEPENDEN", "INDEPENDENT LAB VERIFICATION")}
               </span>
               <h4 className="text-xl font-bold text-white font-serif" style={{ fontFamily: "Cinzel, serif" }}>
                 JANOSHIK ANALYTICAL CERTIFIED
@@ -84,8 +84,8 @@ export default function StandardsGrid() {
             </div>
           </div>
           <div className="text-right text-xs font-mono text-[#CBD5E1]">
-            <span>SERTIFIKAT KROMATOGRAM HPLC</span>
-            <span className="block text-[#2CE58D] font-bold">100% AUDIT REPRODUKSIBILITAS</span>
+             <span>{text("SERTIFIKAT KROMATOGRAM HPLC", "HPLC CHROMATOGRAM CERTIFICATE")}</span>
+             <span className="block text-[#2CE58D] font-bold">{text("AUDIT REPRODUKSIBILITAS 100%", "100% REPRODUCIBILITY AUDIT")}</span>
           </div>
         </div>
 

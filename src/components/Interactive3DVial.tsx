@@ -3,9 +3,11 @@
 import React, { useState } from "react";
 import { Sparkles, Dna, ShieldCheck, CheckCircle2, ArrowRight, Activity, Zap, Layers } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "./LanguageContext";
 
 export default function Interactive3DVial() {
   const [activeTab, setActiveTab] = useState<"definisi" | "sains" | "keunggulan">("definisi");
+  const { text } = useLanguage();
 
   return (
     <div className="py-12 bg-[#080A09]">
@@ -15,7 +17,7 @@ export default function Interactive3DVial() {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0F1411] border border-[#2CE58D]/40 text-[#2CE58D] text-xs font-mono tracking-wider shadow-[0_0_20px_rgba(44,229,141,0.2)]">
             <Sparkles className="w-3.5 h-3.5 text-[#2CE58D]" />
-            <span className="uppercase font-bold text-[11px]">SAINS PEPTIDA & BIOLOGI SELULER</span>
+            <span className="uppercase font-bold text-[11px]">{text("SAINS PEPTIDA & BIOLOGI SELULER", "PEPTIDE SCIENCE & CELLULAR BIOLOGY")}</span>
           </div>
 
           <h2
