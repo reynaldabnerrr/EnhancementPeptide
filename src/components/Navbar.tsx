@@ -55,18 +55,24 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Clean, uniform, and natural navigation labels
   const navLinks = [
-    { id: "specimen", label: text("Mengenal Peptida", "About Peptides"), href: "#specimen" },
+    { id: "specimen", label: text("Tentang Peptida", "About Peptides"), href: "#specimen" },
     { id: "catalog", label: text("Katalog Produk", "Product Catalog"), href: "#catalog" },
     { id: "calculator", label: text("Kalkulator Dosis", "Dose Calculator"), href: "#calculator" },
-    { id: "standards", label: text("Standar Kami", "Our Standards"), href: "#standards" },
+    { id: "standards", label: text("Mengapa Kami", "Why Us"), href: "#standards" },
   ];
 
   const languageControl = (
-    <div className="flex items-center p-1 rounded-lg bg-[#080A09] border border-[#1E2923]" role="group" aria-label={text("Pilih bahasa", "Choose language")}>
+    <div className="flex items-center p-1 rounded-xl bg-[#080A09] border border-[#1E2923]" role="group" aria-label={text("Pilih bahasa", "Choose language")}>
       {(["id", "en"] as const).map((item) => (
-        <button key={item} onClick={() => setLanguage(item)} aria-pressed={language === item} className={`px-2.5 py-1.5 rounded-md text-[10px] font-mono font-bold transition-all ${language === item ? "bg-[#2CE58D] text-black" : "text-[#94A3B8] hover:text-white"}`}>
+        <button
+          key={item}
+          onClick={() => setLanguage(item)}
+          aria-pressed={language === item}
+          className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
+            language === item ? "bg-[#2CE58D] text-black shadow-[0_0_10px_rgba(44,229,141,0.3)]" : "text-[#94A3B8] hover:text-white"
+          }`}
+        >
           {item.toUpperCase()}
         </button>
       ))}
@@ -77,11 +83,10 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
     setMobileMenuOpen(false);
     setActiveSection(id);
 
-    // Explicit Smooth Scroll to Target Section Element with Navbar Height Offset
     setTimeout(() => {
       const target = document.getElementById(id);
       if (target) {
-        const yOffset = -90; // Fixed navbar offset height
+        const yOffset = -80;
         const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
@@ -92,7 +97,7 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#080A09]/95 backdrop-blur-xl border-b border-[#1E2923] py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.9)]"
+          ? "bg-[#080A09]/95 backdrop-blur-xl border-b border-[#1E2923] py-3 shadow-[0_10px_30px_rgba(0,0,0,0.9)]"
           : "bg-gradient-to-b from-[#080A09] to-transparent py-4"
       }`}
     >
@@ -133,7 +138,7 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
             })}
           </nav>
 
-          {/* Clean CTA Button */}
+          {/* Desktop CTA & Language Switcher */}
           <div className="hidden sm:flex items-center gap-3">
             {languageControl}
             <button
@@ -144,40 +149,50 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center gap-2">
-            {languageControl}
+          {/* Clean Mobile Menu Toggle Button */}
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={text(mobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi", mobileMenuOpen ? "Close navigation menu" : "Open navigation menu")}
+              aria-label={text(mobileMenuOpen ? "Tutup menu" : "Buka menu", mobileMenuOpen ? "Close menu" : "Open menu")}
               aria-expanded={mobileMenuOpen}
-              className="p-2 rounded-lg text-[#CBD5E1] hover:text-white"
+              className="p-2.5 rounded-xl bg-[#0F1411] border border-[#1E2923] text-[#CBD5E1] hover:text-white"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Spacious Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 p-5 rounded-2xl bg-[#0F1411] border border-[#1E2923] space-y-3 shadow-[0_20px_40px_rgba(0,0,0,0.9)]">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+          <div className="lg:hidden mt-3 p-5 rounded-2xl bg-[#0F1411] border border-[#1E2923] space-y-4 shadow-[0_25px_50px_rgba(0,0,0,0.95)]">
+            {/* Mobile Language Switcher */}
+            <div className="flex items-center justify-between pb-3 border-b border-[#1E2923]">
+              <span className="text-xs font-mono text-[#94A3B8] font-bold uppercase">
+                {text("Pilih Bahasa", "Language")}
+              </span>
+              {languageControl}
+            </div>
 
-              return (
-                <button
-                  key={link.id}
-                  onClick={() => handleNavClick(link.id)}
-                  className={`block w-full text-left px-4 py-3 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all ${
-                    isActive
-                      ? "bg-[#2CE58D]/15 text-[#2CE58D] border border-[#2CE58D]/40"
-                      : "text-[#CBD5E1] hover:text-white hover:bg-[#1E2923]/40"
-                  }`}
-                >
-                  {link.label}
-                </button>
-              );
-            })}
+            {/* Mobile Links */}
+            <div className="space-y-2">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => handleNavClick(link.id)}
+                    className={`block w-full text-left px-4 py-3 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all ${
+                      isActive
+                        ? "bg-[#2CE58D]/15 text-[#2CE58D] border border-[#2CE58D]/40"
+                        : "text-[#CBD5E1] hover:text-white hover:bg-[#1E2923]/40"
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                );
+              })}
+            </div>
 
             <div className="pt-3 border-t border-[#1E2923]">
               <button
@@ -185,7 +200,7 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
                   setMobileMenuOpen(false);
                   onOpenInquiry();
                 }}
-                className="w-full py-3 rounded-xl bg-[#2CE58D] text-xs font-mono font-bold uppercase tracking-widest text-black"
+                className="w-full py-3.5 rounded-xl bg-[#2CE58D] text-xs font-mono font-bold uppercase tracking-widest text-black shadow-[0_0_20px_rgba(44,229,141,0.3)]"
               >
                 {text("Hubungi / Pesan", "Contact / Order")}
               </button>
