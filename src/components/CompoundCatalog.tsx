@@ -280,7 +280,7 @@ export default function CompoundCatalog({ onOpenCalculator, onOpenInquiry }: Com
                       ) : (
                         <div className="space-y-2">
                           <span className="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider block">
-                            CATATAN OBSERVASI EFEK SAMPING:
+                             {text("CATATAN OBSERVASI EFEK:", "OBSERVED EFFECT NOTES:")}
                           </span>
                           {product.sideEffects.map((se, idx) => (
                             <div key={idx} className="flex items-start gap-2.5 text-xs text-amber-200/90">

@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
-import { Leaf, BarChart3, UserCheck, ShieldCheck, Award, FileCheck } from "lucide-react";
+import { BarChart3, ShieldCheck, Award, FileCheck } from "lucide-react";
+import { useLanguage } from "./LanguageContext";
 
 export default function StandardsGrid() {
+  const { text } = useLanguage();
   return (
     <section id="standards" className="py-20 bg-[#080A09] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,16 +13,16 @@ export default function StandardsGrid() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <span className="text-xs font-mono font-bold text-[#2CE58D] uppercase tracking-widest block">
-            JAMINAN KUALITAS & PENGUJIANKU
+             {text("JAMINAN KUALITAS & PENGUJIAN", "QUALITY ASSURANCE & TESTING")}
           </span>
           <h2
             className="text-3xl sm:text-5xl font-bold text-white font-serif tracking-tight"
             style={{ fontFamily: "Cinzel, serif" }}
           >
-            STANDAR ANALISIS <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2CE58D] to-white">JANOSHIK ANALYTICAL</span>
+             {text("STANDAR ANALISIS", "ANALYTICAL STANDARDS")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2CE58D] to-white">JANOSHIK ANALYTICAL</span>
           </h2>
           <p className="text-sm text-[#94A3B8] font-light">
-            Setiap batch produk peptida kami diuji secara independen oleh laboratorium analitis terkemuka dunia **Janoshik Analytical** untuk memastikan kemurnian &gt;99% tanpa bahan kontaminan.
+             {text("Setiap batch diuji secara independen oleh Janoshik Analytical untuk memverifikasi kemurnian >99% dan mendeteksi kontaminan.", "Every batch is independently tested by Janoshik Analytical to verify >99% purity and screen for contaminants.")}
           </p>
         </div>
 
@@ -35,7 +37,7 @@ export default function StandardsGrid() {
               JANOSHIK TESTED
             </h3>
             <p className="text-xs text-[#CBD5E1] leading-relaxed font-light">
-              Laporan pengujian kromatogram HPLC & Mass Spectrometry asli dari Janoshik Analytical dapat diverifikasi untuk setiap batch produksi.
+               {text("Laporan kromatogram HPLC dan Mass Spectrometry asli dari Janoshik Analytical tersedia untuk verifikasi tiap batch.", "Original HPLC chromatogram and Mass Spectrometry reports from Janoshik Analytical can be verified for each batch.")}
             </p>
           </div>
 
@@ -45,10 +47,10 @@ export default function StandardsGrid() {
               <BarChart3 className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-bold text-white font-serif tracking-wider" style={{ fontFamily: "Cinzel, serif" }}>
-              KEMURNIAN &gt;99% VERIFIED
+               {text("KEMURNIAN >99% TERVERIFIKASI", ">99% PURITY VERIFIED")}
             </h3>
             <p className="text-xs text-[#CBD5E1] leading-relaxed font-light">
-              Menjamin tingkat kemurnian molekuler tertinggi tanpa bahan pengisi (*fillers*), produk sampingan sintesis, atau logam berat.
+               {text("Analisis memeriksa kemurnian molekuler serta keberadaan bahan pengisi, produk sampingan sintesis, dan logam berat.", "Analysis assesses molecular purity and screens for fillers, synthesis by-products, and heavy metals.")}
             </p>
           </div>
 

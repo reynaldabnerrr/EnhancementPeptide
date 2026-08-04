@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { FlaskConical, Calculator, AlertCircle, Info, RefreshCw, X } from "lucide-react";
+import { FlaskConical, Info, X } from "lucide-react";
+import { useLanguage } from "./LanguageContext";
 
 interface ReconstitutionCalculatorProps {
   isOpen?: boolean;
@@ -9,6 +10,7 @@ interface ReconstitutionCalculatorProps {
 }
 
 export default function ReconstitutionCalculator({ isOpen = true, onClose }: ReconstitutionCalculatorProps) {
+  const { text } = useLanguage();
   const [vialMg, setVialMg] = useState<number>(10); // 10 mg vial
   const [bacWaterMl, setBacWaterMl] = useState<number>(2.0); // 2.0 mL water
   const [desiredDoseMg, setDesiredDoseMg] = useState<number>(2.5); // 2.5 mg target dose
@@ -42,10 +44,10 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
         </div>
         <div>
           <h3 className="text-2xl font-bold text-white font-serif" style={{ fontFamily: "var(--font-cinzel), serif" }}>
-            RECONSTITUTION & <span className="text-gradient-emerald">DOSING CALCULATOR</span>
+             {text("REKONSTITUSI & ", "RECONSTITUTION & ")}<span className="text-gradient-emerald">{text("KALKULATOR DOSIS", "DOSING CALCULATOR")}</span>
           </h3>
           <p className="text-xs text-[#C8CCD2]/70 font-mono">
-            PRECISION BAC WATER RATIO & U-100 SYRINGE TICK MARK CALCULATOR
+             {text("RASIO BAC WATER & PENANDA SPUIT U-100 PRESISI", "PRECISION BAC WATER RATIO & U-100 SYRINGE MARKS")}
           </p>
         </div>
       </div>
@@ -56,7 +58,7 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
           {/* Step 1: Vial Quantity */}
           <div>
             <label className="block text-xs font-bold text-[#C8CCD2] uppercase tracking-wider mb-2 font-mono">
-              1. Peptide Vial Quantity (MG)
+               {text("1. Isi Vial Peptida (MG)", "1. Peptide Vial Quantity (MG)")}
             </label>
             <div className="grid grid-cols-4 gap-2">
               {[5, 10, 15, 50].map((mg) => (
@@ -86,7 +88,7 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
           {/* Step 2: BAC Water Volume */}
           <div>
             <label className="block text-xs font-bold text-[#C8CCD2] uppercase tracking-wider mb-2 font-mono">
-              2. Bacteriostatic Water Added (mL)
+               {text("2. Bacteriostatic Water yang Ditambahkan (mL)", "2. Bacteriostatic Water Added (mL)")}
             </label>
             <div className="grid grid-cols-4 gap-2">
               {[1.0, 2.0, 3.0, 5.0].map((ml) => (
@@ -109,7 +111,7 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
           <div>
             <div className="flex justify-between items-center mb-2">
               <label className="text-xs font-bold text-[#C8CCD2] uppercase tracking-wider font-mono">
-                3. Target Research Dose (MG)
+                 {text("3. Target Dosis Riset (MG)", "3. Target Research Dose (MG)")}
               </label>
               <span className="text-xs font-mono font-bold text-[#2CE58D]">
                 {desiredDoseMg} MG ({desiredDoseMg * 1000} mcg)
@@ -136,17 +138,17 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
         <div className="lg:col-span-6 p-6 rounded-2xl bg-[#0B0B0B] border border-[#1E8C63]/30 flex flex-col justify-between">
           <div>
             <h4 className="text-xs font-bold text-[#2CE58D] uppercase font-serif tracking-wider mb-4">
-              CALCULATED RECONSTITUTION RESULTS
+               {text("HASIL PERHITUNGAN REKONSTITUSI", "CALCULATED RECONSTITUTION RESULTS")}
             </h4>
 
             <div className="grid grid-cols-2 gap-3 mb-6 font-mono">
               <div className="p-3 rounded-xl bg-[#23442F]/30 border border-[#1E8C63]/20">
-                <span className="text-[10px] text-[#C8CCD2]/60 uppercase block">Concentration</span>
+                <span className="text-[10px] text-[#C8CCD2]/60 uppercase block">{text("Konsentrasi", "Concentration")}</span>
                 <span className="text-sm font-extrabold text-white">{mgPerMl.toFixed(2)} mg/mL</span>
                 <span className="text-[10px] text-[#2CE58D] block font-light">({mcgPerMl.toFixed(0)} mcg/mL)</span>
               </div>
               <div className="p-3 rounded-xl bg-[#23442F]/30 border border-[#1E8C63]/20">
-                <span className="text-[10px] text-[#C8CCD2]/60 uppercase block">Syringe Draw</span>
+                <span className="text-[10px] text-[#C8CCD2]/60 uppercase block">{text("Tarikan Spuit", "Syringe Draw")}</span>
                 <span className="text-base font-extrabold text-[#2CE58D]">{syringeUnits} Units</span>
                 <span className="text-[10px] text-[#C8CCD2] block">({mlNeededForDose.toFixed(2)} mL)</span>
               </div>
@@ -155,8 +157,8 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
             {/* Syringe Visual Depiction */}
             <div className="p-4 rounded-2xl bg-[#070707] border border-[#1E8C63]/20">
               <div className="flex justify-between items-center text-[10px] font-mono text-[#C8CCD2]/70 mb-2">
-                <span>U-100 Insulin Syringe (100 IU = 1 mL)</span>
-                <span className="text-[#2CE58D] font-bold">Draw Mark: {syringeUnits} IU</span>
+                 <span>{text("Spuit Insulin U-100 (100 IU = 1 mL)", "U-100 Insulin Syringe (100 IU = 1 mL)")}</span>
+                 <span className="text-[#2CE58D] font-bold">{text("Tarik hingga:", "Draw to:")} {syringeUnits} IU</span>
               </div>
 
               {/* Syringe Barrel graphic */}
@@ -184,7 +186,7 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
 
           <div className="mt-4 pt-3 border-t border-[#1E8C63]/20 flex items-center gap-2 text-[10px] text-[#C8CCD2]/60 font-mono">
             <Info className="w-4 h-4 text-[#2CE58D] shrink-0" />
-            <span>Always use sterile Bacteriostatic Water (0.9% Benzyl Alcohol) for reconstitution under aseptic conditions.</span>
+             <span>{text("Selalu gunakan Bacteriostatic Water steril (0.9% Benzyl Alcohol) dan lakukan rekonstitusi dalam kondisi aseptik.", "Always use sterile Bacteriostatic Water (0.9% Benzyl Alcohol) and reconstitute under aseptic conditions.")}</span>
           </div>
         </div>
       </div>
