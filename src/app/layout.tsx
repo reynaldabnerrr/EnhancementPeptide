@@ -31,8 +31,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ENHANCEMENT PEPTIDE - The New Era of Biohacking",
     description: "Premium research compound brand dedicated to precision, purity, and scientific excellence.",
-    images: ["/enhancement-logo-transparent.webp"],
+    images: ["/Peptide_hero.webp"],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ENHANCEMENT PEPTIDE - The New Era of Biohacking",
+    description: "Premium research compound brand dedicated to precision, purity, and scientific excellence.",
+    images: ["/Peptide_hero.webp"],
   },
 };
 
