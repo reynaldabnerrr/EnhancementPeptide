@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #0B0B0B;
+    --emerald-dark: #0E5C4A;
+    --emerald-accent: #1E8C63;
+    --emerald-pine: #23442F;
+    --silver-metallic: #C8CCD2;
+    --white-soft: #F5F5F5;
+    --neon-emerald: #2CE58D;
+
+    --background: #0B0B0B;
+    --foreground: #F5F5F5;
+  }
+}
+
+@theme {
+  --color-brand-dark: #0B0B0B;
+  --color-brand-emerald-dark: #0E5C4A;
+  --color-brand-emerald: #1E8C63;
+  --color-brand-pine: #23442F;
+  --color-brand-silver: #C8CCD2;
+  --color-brand-white: #F5F5F5;
+  --color-brand-neon: #2CE58D;
+
+  --font-cinzel: var(--font-cinzel), 'Cinzel', Georgia, serif;
+  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background-color: #0B0B0B;
+  color: #F5F5F5;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  selection-background-color: #1E8C63;
+  selection-color: #0B0B0B;
+}
+
+::selection {
+  background: #2CE58D;
+  color: #0B0B0B;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0B0B;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E8C63;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2CE58D;
+}
+
+/* Molecular Pattern Background */
+.bg-molecular {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(44, 229, 141, 0.05) 0%, transparent 70%),
+    radial-gradient(circle at 100% 0%, rgba(14, 92, 74, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(35, 68, 47, 0.2) 0%, transparent 50%);
+}
+
+.molecular-grid {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(200, 204, 210, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(200, 204, 210, 0.03) 1px, transparent 1px);
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: linear-gradient(135deg, rgba(14, 92, 74, 0.12) 0%, rgba(11, 11, 11, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 204, 210, 0.12);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(44, 229, 141, 0.4);
+  box-shadow: 0 0 25px rgba(44, 229, 141, 0.15), inset 0 0 15px rgba(30, 140, 99, 0.1);
+  transform: translateY(-3px);
+}
+
+.glass-pill {
+  background: rgba(35, 68, 47, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(44, 229, 141, 0.25);
+}
+
+/* Emerald Glowing Text & Elements */
+.text-glow-neon {
+  text-shadow: 0 0 12px rgba(44, 229, 141, 0.6), 0 0 30px rgba(44, 229, 141, 0.2);
+}
+
+.text-glow-silver {
+  text-shadow: 0 0 10px rgba(200, 204, 210, 0.5);
+}
+
+.glow-box-emerald {
+  box-shadow: 0 0 30px rgba(30, 140, 99, 0.25), inset 0 0 15px rgba(44, 229, 141, 0.15);
+}
+
+/* Silver Metallic Gradient Text */
+.text-gradient-silver {
+  background: linear-gradient(180deg, #FFFFFF 0%, #C8CCD2 60%, #8A929B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #2CE58D 0%, #1E8C63 50%, #0E5C4A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
