@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FlaskConical, Info, X } from "lucide-react";
+import { FlaskConical, Info, X, Sparkles } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 
 interface ReconstitutionCalculatorProps {
@@ -11,9 +11,9 @@ interface ReconstitutionCalculatorProps {
 
 export default function ReconstitutionCalculator({ isOpen = true, onClose }: ReconstitutionCalculatorProps) {
   const { text } = useLanguage();
-  const [vialMg, setVialMg] = useState<number>(10); // 10 mg vial
-  const [bacWaterMl, setBacWaterMl] = useState<number>(2.0); // 2.0 mL water
-  const [desiredDoseMg, setDesiredDoseMg] = useState<number>(2.5); // 2.5 mg target dose
+  const [vialMg, setVialMg] = useState<number>(10); // 10 mg vial default
+  const [bacWaterMl, setBacWaterMl] = useState<number>(2.0); // 2.0 mL water default
+  const [desiredDoseMg, setDesiredDoseMg] = useState<number>(2.5); // 2.5 mg target dose default
 
   // Calculations
   const totalMcgInVial = vialMg * 1000;
@@ -22,83 +22,90 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
   
   // U-100 Insulin Syringe (100 units = 1.0 mL, 1 unit = 0.01 mL)
   const mlNeededForDose = desiredDoseMg / mgPerMl;
-  const syringeUnits = Math.round(mlNeededForDose * 100);
+  const syringeUnits = Math.min(100, Math.max(0, Math.round(mlNeededForDose * 100)));
 
   if (!isOpen) return null;
 
+  const handleVialChange = (mg: number) => {
+    setVialMg(mg);
+    if (desiredDoseMg > mg) {
+      setDesiredDoseMg(mg);
+    }
+  };
+
   return (
-    <div className="relative glass-card rounded-3xl border border-[#2CE58D]/30 p-6 sm:p-8 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+    <div className="relative bg-[#0F1411] rounded-2xl border border-[#2CE58D]/30 p-5 sm:p-6 shadow-[0_15px_40px_rgba(0,0,0,0.9)] overflow-hidden">
+      {/* Background Accent Ambient Glow */}
+      <div className="absolute top-0 right-0 w-60 h-60 bg-[#2CE58D]/5 rounded-full blur-[100px] pointer-events-none" />
+
       {onClose && (
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full bg-[#23442F]/60 text-[#C8CCD2] hover:text-white hover:bg-[#1E8C63] transition-all"
+          className="absolute top-4 right-4 p-1.5 rounded-full bg-[#080A09] text-[#94A3B8] hover:text-white hover:bg-[#1E2923] transition-all"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
       )}
 
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 rounded-2xl bg-[#0E5C4A]/40 border border-[#2CE58D]/40 text-[#2CE58D]">
-          <FlaskConical className="w-6 h-6" />
+      {/* Compact Header */}
+      <div className="flex items-center gap-3 mb-5 pb-4 border-b border-[#1E2923]">
+        <div className="p-2.5 rounded-xl bg-[#080A09] border border-[#2CE58D]/40 text-[#2CE58D]">
+          <FlaskConical className="w-5 h-5" />
         </div>
         <div>
-          <h3 className="text-2xl font-bold text-white font-serif" style={{ fontFamily: "var(--font-cinzel), serif" }}>
-             {text("REKONSTITUSI & ", "RECONSTITUTION & ")}<span className="text-gradient-emerald">{text("KALKULATOR DOSIS", "DOSING CALCULATOR")}</span>
+          <span className="text-[9px] font-mono text-[#2CE58D] font-bold uppercase tracking-widest block">
+            {text("PRESISI REKONSTITUSI & REKAP DOSIS", "RECONSTITUTION PRECISION & DOSE SUMMARY")}
+          </span>
+          <h3 className="text-xl sm:text-2xl font-bold text-white font-serif tracking-tight leading-none pt-0.5" style={{ fontFamily: "Cinzel, serif" }}>
+            {text("KALKULATOR REKONSTITUSI & ", "RECONSTITUTION & ")}<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2CE58D] to-white">{text("DOSIS", "DOSING CALCULATOR")}</span>
           </h3>
-          <p className="text-xs text-[#C8CCD2]/70 font-mono">
-             {text("RASIO BAC WATER & PENANDA SPUIT U-100 PRESISI", "PRECISION BAC WATER RATIO & U-100 SYRINGE MARKS")}
-          </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      {/* Compact Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+        
         {/* Controls Column */}
-        <div className="lg:col-span-6 space-y-5">
-          {/* Step 1: Vial Quantity */}
-          <div>
-            <label className="block text-xs font-bold text-[#C8CCD2] uppercase tracking-wider mb-2 font-mono">
-               {text("1. Isi Vial Peptida (MG)", "1. Peptide Vial Quantity (MG)")}
-            </label>
-            <div className="grid grid-cols-4 gap-2">
+        <div className="lg:col-span-6 space-y-4 flex flex-col justify-between">
+          
+          {/* Step 1: Vial Quantity (MG) */}
+          <div className="space-y-1.5">
+            <div className="flex justify-between items-center text-xs font-mono">
+              <span className="font-bold text-[#CBD5E1] uppercase">{text("1. Jumlah Peptida dalam Vial (MG)", "1. Peptide Vial Quantity (MG)")}</span>
+              <span className="text-[#2CE58D] font-bold">{vialMg} MG</span>
+            </div>
+            <div className="grid grid-cols-4 gap-1.5">
               {[5, 10, 15, 50].map((mg) => (
                 <button
                   key={mg}
-                  onClick={() => setVialMg(mg)}
-                  className={`py-2.5 rounded-xl font-mono text-xs font-bold transition-all ${
+                  onClick={() => handleVialChange(mg)}
+                  className={`py-2 rounded-lg font-mono text-xs font-bold transition-all ${
                     vialMg === mg
-                      ? "bg-[#2CE58D] text-black shadow-[0_0_15px_rgba(44,229,141,0.3)]"
-                      : "bg-[#0B0B0B] border border-[#1E8C63]/30 text-[#C8CCD2] hover:border-[#2CE58D]"
+                      ? "bg-[#2CE58D] text-black shadow-[0_0_12px_rgba(44,229,141,0.3)]"
+                      : "bg-[#080A09] border border-[#1E2923] text-[#94A3B8] hover:text-white hover:border-[#2CE58D]/40"
                   }`}
                 >
                   {mg} MG
                 </button>
               ))}
             </div>
-            <input
-              type="range"
-              min="1"
-              max="100"
-              value={vialMg}
-              onChange={(e) => setVialMg(Number(e.target.value))}
-              className="w-full mt-2 accent-[#2CE58D]"
-            />
           </div>
 
-          {/* Step 2: BAC Water Volume */}
-          <div>
-            <label className="block text-xs font-bold text-[#C8CCD2] uppercase tracking-wider mb-2 font-mono">
-               {text("2. Bacteriostatic Water yang Ditambahkan (mL)", "2. Bacteriostatic Water Added (mL)")}
-            </label>
-            <div className="grid grid-cols-4 gap-2">
+          {/* Step 2: BAC Water Added (mL) */}
+          <div className="space-y-1.5">
+            <div className="flex justify-between items-center text-xs font-mono">
+              <span className="font-bold text-[#CBD5E1] uppercase">{text("2. Volume Air Bakteriostatik (mL)", "2. Bacteriostatic Water Added (mL)")}</span>
+              <span className="text-[#2CE58D] font-bold">{bacWaterMl.toFixed(1)} mL</span>
+            </div>
+            <div className="grid grid-cols-4 gap-1.5">
               {[1.0, 2.0, 3.0, 5.0].map((ml) => (
                 <button
                   key={ml}
                   onClick={() => setBacWaterMl(ml)}
-                  className={`py-2.5 rounded-xl font-mono text-xs font-bold transition-all ${
+                  className={`py-2 rounded-lg font-mono text-xs font-bold transition-all ${
                     bacWaterMl === ml
-                      ? "bg-[#2CE58D] text-black shadow-[0_0_15px_rgba(44,229,141,0.3)]"
-                      : "bg-[#0B0B0B] border border-[#1E8C63]/30 text-[#C8CCD2] hover:border-[#2CE58D]"
+                      ? "bg-[#2CE58D] text-black shadow-[0_0_12px_rgba(44,229,141,0.3)]"
+                      : "bg-[#080A09] border border-[#1E2923] text-[#94A3B8] hover:text-white hover:border-[#2CE58D]/40"
                   }`}
                 >
                   {ml.toFixed(1)} mL
@@ -107,72 +114,90 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
             </div>
           </div>
 
-          {/* Step 3: Desired Research Dose */}
-          <div>
-            <div className="flex justify-between items-center mb-2">
-              <label className="text-xs font-bold text-[#C8CCD2] uppercase tracking-wider font-mono">
-                 {text("3. Target Dosis Riset (MG)", "3. Target Research Dose (MG)")}
-              </label>
-              <span className="text-xs font-mono font-bold text-[#2CE58D]">
-                {desiredDoseMg} MG ({desiredDoseMg * 1000} mcg)
+          {/* Step 3: Target Research Dose (MG) */}
+          <div className="space-y-1.5">
+            <div className="flex justify-between items-center text-xs font-mono">
+              <span className="font-bold text-[#CBD5E1] uppercase">{text("3. Target Dosis Riset (MG)", "3. Target Research Dose (MG)")}</span>
+              <span className="text-[#2CE58D] font-bold">
+                {desiredDoseMg.toFixed(2)} MG ({(desiredDoseMg * 1000).toLocaleString()} mcg)
               </span>
             </div>
+
+            {/* Quick Presets */}
+            <div className="grid grid-cols-5 gap-1">
+              {[0.25, 0.5, 1.0, 2.5, 5.0].map((preset) => (
+                <button
+                  key={preset}
+                  onClick={() => setDesiredDoseMg(Math.min(vialMg, preset))}
+                  className={`py-1 rounded-md text-[10px] font-mono font-bold transition-all ${
+                    desiredDoseMg === preset
+                      ? "bg-[#2CE58D]/20 text-[#2CE58D] border border-[#2CE58D]/50"
+                      : "bg-[#080A09] text-[#94A3B8] border border-[#1E2923] hover:text-white"
+                  }`}
+                >
+                  {preset} mg
+                </button>
+              ))}
+            </div>
+
             <input
               type="range"
-              min="0.25"
+              min="0.05"
               max={vialMg}
-              step="0.25"
+              step="0.05"
               value={desiredDoseMg}
               onChange={(e) => setDesiredDoseMg(Number(e.target.value))}
-              className="w-full accent-[#2CE58D]"
+              className="w-full accent-[#2CE58D] bg-[#080A09] cursor-pointer h-1 rounded"
             />
-            <div className="flex justify-between text-[10px] text-[#C8CCD2]/50 font-mono mt-1">
-              <span>0.25 mg</span>
-              <span>{(vialMg / 2).toFixed(1)} mg</span>
-              <span>{vialMg} mg</span>
-            </div>
           </div>
+
         </div>
 
-        {/* Output Results & Syringe Visualization */}
-        <div className="lg:col-span-6 p-6 rounded-2xl bg-[#0B0B0B] border border-[#1E8C63]/30 flex flex-col justify-between">
+        {/* Output Results & Visual Syringe Column */}
+        <div className="lg:col-span-6 p-4 rounded-xl bg-[#080A09] border border-[#1E2923] flex flex-col justify-between space-y-4">
           <div>
-            <h4 className="text-xs font-bold text-[#2CE58D] uppercase font-serif tracking-wider mb-4">
-               {text("HASIL PERHITUNGAN REKONSTITUSI", "CALCULATED RECONSTITUTION RESULTS")}
-            </h4>
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#1E2923]">
+              <h4 className="text-[11px] font-mono font-bold text-[#2CE58D] uppercase tracking-wider flex items-center gap-1">
+                <Sparkles className="w-3 h-3" />
+                {text("HASIL PERHITUNGAN", "CALCULATED RESULTS")}
+              </h4>
+              <span className="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-[#2CE58D]/15 text-[#2CE58D] border border-[#2CE58D]/30">
+                 {text("STANDAR U-100", "U-100 STANDARD")}
+              </span>
+            </div>
 
-            <div className="grid grid-cols-2 gap-3 mb-6 font-mono">
-              <div className="p-3 rounded-xl bg-[#23442F]/30 border border-[#1E8C63]/20">
-                <span className="text-[10px] text-[#C8CCD2]/60 uppercase block">{text("Konsentrasi", "Concentration")}</span>
-                <span className="text-sm font-extrabold text-white">{mgPerMl.toFixed(2)} mg/mL</span>
-                <span className="text-[10px] text-[#2CE58D] block font-light">({mcgPerMl.toFixed(0)} mcg/mL)</span>
+            {/* Results Grid */}
+            <div className="grid grid-cols-2 gap-2 mb-3 font-mono">
+              <div className="p-2.5 rounded-lg bg-[#0F1411] border border-[#1E2923]">
+                <span className="text-[9px] text-[#94A3B8] uppercase block font-semibold">{text("Konsentrasi", "Concentration")}</span>
+                <span className="text-base font-extrabold text-white block">{mgPerMl.toFixed(2)} mg/mL</span>
+                <span className="text-[9px] text-[#2CE58D] block font-light">({mcgPerMl.toLocaleString()} mcg/mL)</span>
               </div>
-              <div className="p-3 rounded-xl bg-[#23442F]/30 border border-[#1E8C63]/20">
-                <span className="text-[10px] text-[#C8CCD2]/60 uppercase block">{text("Tarikan Spuit", "Syringe Draw")}</span>
-                <span className="text-base font-extrabold text-[#2CE58D]">{syringeUnits} Units</span>
-                <span className="text-[10px] text-[#C8CCD2] block">({mlNeededForDose.toFixed(2)} mL)</span>
+              
+              <div className="p-2.5 rounded-lg bg-[#0F1411] border border-[#2CE58D]/40 shadow-[0_0_12px_rgba(44,229,141,0.15)]">
+                <span className="text-[9px] text-[#94A3B8] uppercase block font-semibold">{text("Tarikan Spuit", "Syringe Draw")}</span>
+                <span className="text-lg font-extrabold text-[#2CE58D] block">{syringeUnits} {text("Unit", "Units")}</span>
+                <span className="text-[9px] text-[#CBD5E1] block">({mlNeededForDose.toFixed(2)} mL)</span>
               </div>
             </div>
 
-            {/* Syringe Visual Depiction */}
-            <div className="p-4 rounded-2xl bg-[#070707] border border-[#1E8C63]/20">
-              <div className="flex justify-between items-center text-[10px] font-mono text-[#C8CCD2]/70 mb-2">
+            {/* Compact Syringe Gauge */}
+            <div className="p-3 rounded-xl bg-[#040605] border border-[#1E2923] space-y-2">
+              <div className="flex justify-between items-center text-[10px] font-mono text-[#CBD5E1]">
                  <span>{text("Spuit Insulin U-100 (100 IU = 1 mL)", "U-100 Insulin Syringe (100 IU = 1 mL)")}</span>
-                 <span className="text-[#2CE58D] font-bold">{text("Tarik hingga:", "Draw to:")} {syringeUnits} IU</span>
+                 <span className="text-[#2CE58D] font-bold">{text("Tarik hingga", "Draw to")}: {syringeUnits} IU</span>
               </div>
 
-              {/* Syringe Barrel graphic */}
-              <div className="relative h-10 w-full bg-[#111] rounded-lg border border-[#C8CCD2]/30 flex items-center overflow-hidden">
-                {/* Liquid Fill Progress */}
+              {/* Syringe Fill Graphic */}
+              <div className="relative h-8 w-full bg-[#080A09] rounded-lg border border-[#1E2923] flex items-center overflow-hidden p-0.5">
                 <div
-                  className="h-full bg-gradient-to-r from-[#0E5C4A] to-[#2CE58D] transition-all duration-300 relative shadow-[0_0_15px_rgba(44,229,141,0.5)]"
-                  style={{ width: `${Math.min(100, Math.max(0, syringeUnits))}%` }}
+                  className="h-full bg-gradient-to-r from-[#10543F] via-[#1E8C63] to-[#2CE58D] rounded transition-all duration-300 relative shadow-[0_0_15px_rgba(44,229,141,0.5)]"
+                  style={{ width: `${syringeUnits}%` }}
                 >
-                  <div className="absolute right-0 top-0 bottom-0 w-1 bg-white shadow-md animate-pulse" />
+                  <div className="absolute right-0 top-0 bottom-0 w-1 bg-white shadow-[0_0_8px_#FFFFFF] animate-pulse" />
                 </div>
 
-                {/* Syringe Tick Marks Overlay */}
-                <div className="absolute inset-0 flex justify-between px-2 items-center pointer-events-none text-[8px] font-mono text-white/50">
+                <div className="absolute inset-0 flex justify-between px-2 items-center pointer-events-none text-[8px] font-mono text-[#94A3B8] font-bold">
                   <span>0</span>
                   <span>20</span>
                   <span>40</span>
@@ -184,11 +209,14 @@ export default function ReconstitutionCalculator({ isOpen = true, onClose }: Rec
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-[#1E8C63]/20 flex items-center gap-2 text-[10px] text-[#C8CCD2]/60 font-mono">
-            <Info className="w-4 h-4 text-[#2CE58D] shrink-0" />
-             <span>{text("Selalu gunakan Bacteriostatic Water steril (0.9% Benzyl Alcohol) dan lakukan rekonstitusi dalam kondisi aseptik.", "Always use sterile Bacteriostatic Water (0.9% Benzyl Alcohol) and reconstitute under aseptic conditions.")}</span>
+          {/* Compact Safety Disclaimer */}
+          <div className="pt-2 border-t border-[#1E2923] flex items-start gap-2 text-[10px] text-[#94A3B8] font-mono leading-relaxed">
+            <Info className="w-3.5 h-3.5 text-[#2CE58D] shrink-0 mt-0.5" />
+             <span>{text("Selalu gunakan air bakteriostatik steril (0,9% benzil alkohol) dan lakukan proses dalam kondisi aseptik.", "Always use sterile Bacteriostatic Water (0.9% Benzyl Alcohol) under aseptic conditions.")}</span>
           </div>
+
         </div>
+
       </div>
     </div>
   );

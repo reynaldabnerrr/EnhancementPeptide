@@ -171,12 +171,12 @@ export default function CompoundCatalog({ onOpenCalculator, onOpenInquiry }: Com
                       <div className="w-40 sm:w-44 h-40 sm:h-44 rounded-2xl bg-[#040605] border border-[#1E2923] p-1 flex items-center justify-center shrink-0 overflow-hidden shadow-inner relative group">
                         <img
                           src={product.image}
-                          alt={product.name}
+                           alt={text(`Kemasan produk ${product.name}`, `${product.name} product packaging`)}
                           className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
                         />
                         {/* Official Brand Logo Watermark Overlay */}
                         <div className="absolute top-2 left-2 p-1.5 rounded-lg bg-[#080A09]/85 border border-[#2CE58D]/30 backdrop-blur-md shadow-md">
-                          <img src="/enhancement-logo-transparent.png" alt="Logo" className="w-5 h-5 object-contain" />
+                           <img src="/enhancement-logo-transparent.png" alt={text("Logo Enhancement Peptide", "Enhancement Peptide logo")} className="w-5 h-5 object-contain" />
                         </div>
                       </div>
                     </div>

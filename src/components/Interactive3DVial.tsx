@@ -24,11 +24,11 @@ export default function Interactive3DVial() {
             className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight font-serif"
             style={{ fontFamily: "Cinzel, serif" }}
           >
-            APA ITU <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2CE58D] via-[#6EE7B7] to-white drop-shadow-[0_0_30px_rgba(44,229,141,0.4)]">PEPTIDA?</span>
+             {text("APA ITU", "WHAT ARE")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2CE58D] via-[#6EE7B7] to-white drop-shadow-[0_0_30px_rgba(44,229,141,0.4)]">{text("PEPTIDA?", "PEPTIDES?")}</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#94A3B8] font-light max-w-2xl mx-auto leading-relaxed">
-            Kurir komunikasi biologis yang menginstruksikan sel-sel tubuh untuk regenerasi, pemulihan jaringan, dan regulasi metabolisme.
+             {text("Molekul pembawa pesan biologis yang membantu sel mengatur regenerasi, pemulihan jaringan, dan metabolisme.", "Biological messenger molecules that help cells regulate regeneration, tissue repair, and metabolism.")}
           </p>
         </div>
 
@@ -46,7 +46,7 @@ export default function Interactive3DVial() {
                 {/* Product Image Showcase */}
                 <img
                   src="/reta_hero.png"
-                  alt="Enhancement Peptide High Purity Specimen"
+                   alt={text("Spesimen Enhancement Peptide berkemurnian tinggi", "High-purity Enhancement Peptide specimen")}
                   className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 
@@ -88,7 +88,7 @@ export default function Interactive3DVial() {
                       : "text-[#94A3B8] hover:text-white"
                   }`}
                 >
-                  Definisi Peptida
+                   {text("Definisi Peptida", "Peptide Basics")}
                 </button>
                 <button
                   onClick={() => setActiveTab("sains")}
@@ -98,7 +98,7 @@ export default function Interactive3DVial() {
                       : "text-[#94A3B8] hover:text-white"
                   }`}
                 >
-                  Mekanisme Kerja
+                   {text("Mekanisme Kerja", "How They Work")}
                 </button>
                 <button
                   onClick={() => setActiveTab("keunggulan")}
@@ -108,7 +108,7 @@ export default function Interactive3DVial() {
                       : "text-[#94A3B8] hover:text-white"
                   }`}
                 >
-                  Keunggulan Sains
+                   {text("Keunggulan Sains", "Scientific Advantages")}
                 </button>
               </div>
 
@@ -125,13 +125,13 @@ export default function Interactive3DVial() {
                       className="space-y-4"
                     >
                       <h3 className="text-xl sm:text-2xl font-bold text-white font-serif leading-snug" style={{ fontFamily: "Cinzel, serif" }}>
-                        Kunci Biologis Yang Menginstruksikan Kerja Sel Tubuh
+                         {text("Sinyal Biologis yang Mengarahkan Kerja Sel", "Biological Signals That Guide Cell Activity")}
                       </h3>
                       <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed font-light">
-                        <strong className="text-[#2CE58D] font-semibold">Peptida</strong> adalah rantai asam amino pendek yang bertindak sebagai <strong className="text-white font-semibold">&quot;kurir komunikasi biokimia&quot;</strong> di dalam tubuh. Ibarat sebuah kunci presisi, peptida menempel pada reseptor sel spesifik untuk memerintahkan tubuh menjalankan fungsi penting—mulai dari memicu pemulihan sel, merangsang pembentukan kolagen alami, hingga mengoptimalkan pembakaran energi metabolisme.
+                         {text("Peptida merupakan rantai pendek asam amino yang berfungsi sebagai pembawa pesan biokimia. Dengan berikatan pada reseptor tertentu, molekul ini dapat memicu proses seperti pemulihan sel, produksi kolagen, dan pengaturan metabolisme energi.", "Peptides are short amino-acid chains that act as biochemical messengers. By binding to specific receptors, they can trigger processes such as cell repair, collagen production, and energy metabolism regulation.")}
                       </p>
                       <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed font-light">
-                        Di tingkat molekuler, peptida terdiri dari rantai presisi yang dihubungkan oleh ikatan kovalen amida. Berbeda dengan obat sintetis biasa yang sering kali bekerja secara acak, peptida meniru molekul alami tubuh secara spesifik sehingga mampu memberikan hasil yang sangat efektif dengan tingkat presisi tinggi.
+                         {text("Pada tingkat molekuler, asam amino di dalam peptida terhubung melalui ikatan amida. Susunannya dapat meniru sinyal alami tubuh sehingga interaksinya dengan target sel dapat dipelajari secara lebih spesifik.", "At the molecular level, peptide amino acids are linked by amide bonds. Their sequences can mimic natural body signals, enabling more targeted study of cellular interactions.")}
                       </p>
                     </motion.div>
                   )}
@@ -146,13 +146,13 @@ export default function Interactive3DVial() {
                       className="space-y-4"
                     >
                       <h3 className="text-xl sm:text-2xl font-bold text-white font-serif leading-snug" style={{ fontFamily: "Cinzel, serif" }}>
-                        Bagaimana Peptida Menargetkan Reseptor Selular
+                         {text("Cara Peptida Berinteraksi dengan Reseptor Sel", "How Peptides Interact with Cell Receptors")}
                       </h3>
                       <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed font-light">
-                        Setiap peptida dirancang dengan urutan asam amino yang unik yang hanya cocok dengan reseptor permukaan sel tertentu. Ketika peptida mengikat reseptor target, ia memicu rantai reaksi biokimia positif di dalam sel (*signal transduction pathway*).
+                         {text("Urutan asam amino tiap peptida menentukan kecocokannya dengan reseptor permukaan sel. Saat berikatan dengan target, peptida dapat memulai rangkaian reaksi biokimia yang disebut signal transduction pathway.", "Each peptide's amino-acid sequence determines its affinity for specific cell-surface receptors. Binding to a target can initiate a biochemical cascade known as a signal transduction pathway.")}
                       </p>
                       <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed font-light">
-                        Proses ini berjalan secara alami tanpa merusak atau membebani organ tubuh lainnya, menjadikan peptida instrumen utama dalam riset biohacking dan regenerasi sel modern.
+                         {text("Mekanisme yang terarah ini menjadikan peptida instrumen penting dalam penelitian biohacking dan regenerasi sel modern.", "This targeted mechanism makes peptides valuable tools in modern biohacking and cellular regeneration research.")}
                       </p>
                     </motion.div>
                   )}
@@ -167,13 +167,13 @@ export default function Interactive3DVial() {
                       className="space-y-4"
                     >
                       <h3 className="text-xl sm:text-2xl font-bold text-white font-serif leading-snug" style={{ fontFamily: "Cinzel, serif" }}>
-                        Presisi Tinggi & Bioavailabilitas Alami
+                         {text("Presisi Tinggi & Bioavailabilitas", "High Precision & Bioavailability")}
                       </h3>
                       <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed font-light">
-                        Karena ukurannya yang ringkas (2 hingga 50 asam amino), peptida memiliki bioavailabilitas dan tingkat penyerapan yang jauh lebih baik dibandingkan protein kompleks berukuran besar.
+                         {text("Dengan panjang sekitar 2 hingga 50 asam amino, peptida lebih ringkas daripada protein kompleks dan menawarkan karakter penyerapan yang berbeda untuk diteliti.", "At roughly 2 to 50 amino acids long, peptides are smaller than complex proteins and offer distinct absorption characteristics for study.")}
                       </p>
                       <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed font-light">
-                        Formulasi peptida berstandar laboratorium &gt;99% memastikan efektivitas kerja seluler yang konsisten dan bebas dari kontaminasi zat pengisi.
+                         {text("Formulasi dengan kemurnian laboratorium >99% membantu menjaga konsistensi penelitian dan meminimalkan kontaminasi bahan pengisi.", "Laboratory-grade formulations with >99% purity support research consistency and minimize filler contamination.")}
                       </p>
                     </motion.div>
                   )}
@@ -192,10 +192,10 @@ export default function Interactive3DVial() {
               </div>
               <div className="space-y-1">
                 <h4 className="text-sm font-bold text-white font-serif" style={{ fontFamily: "Cinzel, serif" }}>
-                  Sinyal Sel Presisi
+                   {text("Sinyal Sel Presisi", "Precision Cell Signaling")}
                 </h4>
                 <p className="text-xs text-[#94A3B8] font-light leading-relaxed">
-                  Menjangkau reseptor spesifik tanpa mengganggu sistem metabolisme tubuh lainnya.
+                   {text("Menargetkan reseptor spesifik untuk mempelajari respons sel secara terarah.", "Targets specific receptors to study focused cellular responses.")}
                 </p>
               </div>
             </div>
@@ -206,10 +206,10 @@ export default function Interactive3DVial() {
               </div>
               <div className="space-y-1">
                 <h4 className="text-sm font-bold text-white font-serif" style={{ fontFamily: "Cinzel, serif" }}>
-                  Penyerapan Cepat
+                   {text("Rantai Ringkas", "Compact Chains")}
                 </h4>
                 <p className="text-xs text-[#94A3B8] font-light leading-relaxed">
-                  Ukuran rantai asam amino pendek memberikan efisiensi reaksi seluler yang instan.
+                   {text("Rantai asam amino pendek mendukung interaksi seluler yang efisien untuk diteliti.", "Short amino-acid chains support efficient cellular interactions for study.")}
                 </p>
               </div>
             </div>
@@ -220,10 +220,10 @@ export default function Interactive3DVial() {
               </div>
               <div className="space-y-1">
                 <h4 className="text-sm font-bold text-white font-serif" style={{ fontFamily: "Cinzel, serif" }}>
-                  Regenerasi Alami
+                   {text("Riset Regenerasi", "Regeneration Research")}
                 </h4>
                 <p className="text-xs text-[#94A3B8] font-light leading-relaxed">
-                  Mendorong pemulihan sel, produksi kolagen, dan pembakaran energi basal.
+                   {text("Mendukung kajian pemulihan sel, produksi kolagen, dan metabolisme energi.", "Supports studies of cell repair, collagen production, and energy metabolism.")}
                 </p>
               </div>
             </div>

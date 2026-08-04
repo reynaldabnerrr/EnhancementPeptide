@@ -149,6 +149,8 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
             {languageControl}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={text(mobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi", mobileMenuOpen ? "Close navigation menu" : "Open navigation menu")}
+              aria-expanded={mobileMenuOpen}
               className="p-2 rounded-lg text-[#CBD5E1] hover:text-white"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

@@ -191,7 +191,7 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
                   <motion.img
                     key={currentProduct.image}
                     src={currentProduct.image}
-                    alt={`Enhancement Peptide ${currentProduct.name}`}
+                     alt={text(`Kemasan ${currentProduct.name} dari Enhancement Peptide`, `Enhancement Peptide ${currentProduct.name} packaging`)}
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.02 }}
@@ -217,7 +217,7 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
               <div className="mt-3 px-3 py-2 flex items-center justify-between text-xs font-mono text-[#94A3B8]">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#2CE58D]" />
-                  <span>{currentProduct.name} (Vial & Box Packaging)</span>
+                  <span>{currentProduct.name}</span>
                 </div>
                 <span className={`font-bold ${currentProduct.status === "ready" ? "text-[#2CE58D]" : "text-amber-400"}`}>
                   JANOSHIK VERIFIED

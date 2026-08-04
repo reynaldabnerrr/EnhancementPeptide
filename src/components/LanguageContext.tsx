@@ -18,7 +18,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "id" || stored === "en") setLanguage(stored);
+    if (stored !== "id" && stored !== "en") return;
+    const frame = window.requestAnimationFrame(() => setLanguage(stored));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
