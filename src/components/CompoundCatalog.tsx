@@ -114,7 +114,7 @@ export default function CompoundCatalog({ onOpenCalculator, onOpenInquiry }: Com
   };
 
   return (
-    <section id="catalog" className="py-16 sm:py-24 bg-[#080A09] relative">
+    <section id="catalog" className="py-16 sm:py-24 bg-transparent relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

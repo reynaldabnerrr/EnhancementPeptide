@@ -23,7 +23,7 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
   };
 
   return (
-    <section id="hero" className="relative pt-36 sm:pt-48 pb-28 sm:pb-36 overflow-hidden bg-[#080A09]">
+    <section id="hero" className="relative pt-36 sm:pt-48 pb-28 sm:pb-36 overflow-hidden bg-transparent z-10">
       {/* Cinematic Ambient Background Light Grid */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[850px] h-[500px] bg-gradient-to-b from-[#10543F]/25 via-[#0E4232]/10 to-transparent rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-10 right-10 w-96 h-96 bg-[#2CE58D]/5 rounded-full blur-[140px] pointer-events-none" />

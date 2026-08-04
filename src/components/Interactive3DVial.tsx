@@ -10,7 +10,7 @@ export default function Interactive3DVial() {
   const { text } = useLanguage();
 
   return (
-    <div className="py-12 bg-[#080A09]">
+    <div className="py-12 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header - Editorial Thesis */}
