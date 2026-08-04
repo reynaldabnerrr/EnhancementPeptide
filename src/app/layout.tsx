@@ -22,16 +22,16 @@ export const metadata: Metadata = {
   keywords: ["Peptide Research", "Retatrutide", "GHK-Cu", "Biohacking", "Janoshik Analytical", "Enhancement Peptide", "Purity >99%"],
   icons: {
     icon: [
-      { url: "/enhancement-logo-transparent.png" },
+      { url: "/enhancement-logo-transparent.webp" },
       { url: "/icon.png" },
     ],
-    shortcut: "/enhancement-logo-transparent.png",
-    apple: "/enhancement-logo-transparent.png",
+    shortcut: "/enhancement-logo-transparent.webp",
+    apple: "/enhancement-logo-transparent.webp",
   },
   openGraph: {
     title: "ENHANCEMENT PEPTIDE - The New Era of Biohacking",
     description: "Premium research compound brand dedicated to precision, purity, and scientific excellence.",
-    images: ["/enhancement-logo-transparent.png"],
+    images: ["/enhancement-logo-transparent.webp"],
     type: "website",
   },
 };
@@ -42,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${cinzel.variable} ${inter.variable} dark scroll-smooth`}>
+    <html lang="en" className={`${cinzel.variable} ${inter.variable} dark scroll-smooth`}>
       <body className="min-h-screen bg-[#080A09] text-[#F8FAFC] antialiased selection:bg-[#2CE58D] selection:text-black">
         {children}
       </body>

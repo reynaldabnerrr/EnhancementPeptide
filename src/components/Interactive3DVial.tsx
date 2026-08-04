@@ -45,8 +45,8 @@ export default function Interactive3DVial() {
               <div className="relative w-full aspect-[4/3] rounded-2xl bg-[#040605] border border-[#2CE58D]/40 p-2 overflow-hidden shadow-2xl group">
                 {/* Product Image Showcase */}
                 <img
-                  src="/reta_hero.png"
-                   alt={text("Spesimen Enhancement Peptide berkemurnian tinggi", "High-purity Enhancement Peptide specimen")}
+                  src="/Peptide_hero.webp"
+                  alt={text("Spesimen Enhancement Peptide berkemurnian tinggi", "High-purity Enhancement Peptide specimen")}
                   className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 

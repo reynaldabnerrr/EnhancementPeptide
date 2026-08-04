@@ -65,7 +65,7 @@ export default function CompoundCatalog({ onOpenCalculator, onOpenInquiry }: Com
         text("1x Spuit 3cc Rekonstitusi", "1x 3cc Reconstitution Syringe"),
       ],
       buttonText: text("Inquiry / Order Retatrutide", "Inquire / Order Retatrutide"),
-      image: "/reta_hero.png",
+      image: "/reta_hero.webp",
     },
     {
       id: "ghk-cu",
@@ -100,7 +100,7 @@ export default function CompoundCatalog({ onOpenCalculator, onOpenInquiry }: Com
         text("1x Spuit 3cc Rekonstitusi", "1x 3cc Reconstitution Syringe"),
       ],
       buttonText: text("Segera Hadir / Pre-Order GHK-Cu", "Coming Soon / Pre-Order GHK-Cu"),
-      image: "/ghk_cu_hero.png",
+      image: "/ghk_cu_hero.webp",
     },
   ];
 
@@ -179,7 +179,7 @@ export default function CompoundCatalog({ onOpenCalculator, onOpenInquiry }: Com
                         />
                         {/* Official Brand Logo Watermark Overlay */}
                         <div className="absolute top-2 left-2 p-1.5 rounded-lg bg-[#080A09]/85 border border-[#2CE58D]/30 backdrop-blur-md shadow-md">
-                          <img src="/enhancement-logo-transparent.png" alt="Logo" className="w-5 h-5 object-contain" />
+                          <img src="/enhancement-logo-transparent.webp" alt="Logo" className="w-5 h-5 object-contain" />
                         </div>
                       </div>
                     </div>
