@@ -41,14 +41,14 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-[#0F1411]/90 border border-[#2CE58D]/50 text-[#2CE58D] text-xs font-mono tracking-wider shadow-[0_0_25px_rgba(44,229,141,0.25)] backdrop-blur-md"
+          className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 xs:px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-[#0F1411]/90 border border-[#2CE58D]/50 text-[#2CE58D] text-xs font-mono shadow-[0_0_25px_rgba(44,229,141,0.25)] backdrop-blur-md max-w-full"
         >
-          <span className="relative flex h-2 w-2">
+          <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2CE58D] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2CE58D]"></span>
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-[#2CE58D]"></span>
           </span>
-          <ShieldCheck className="w-4 h-4 text-[#2CE58D]" />
-          <span className="uppercase font-bold text-[10px] sm:text-xs">
+          <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#2CE58D] shrink-0" />
+          <span className="uppercase font-bold text-[8.5px] xs:text-[10px] sm:text-xs tracking-tight xs:tracking-wider whitespace-nowrap">
             {text("JANOSHIK ANALYTICAL VERIFIED • KEMURNIAN >99%", "JANOSHIK ANALYTICAL VERIFIED • PURITY >99%")}
           </span>
         </motion.div>
@@ -61,23 +61,23 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
           className="space-y-4 max-w-4xl mx-auto"
         >
           <h1
-            className="text-4xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.05] sm:leading-none font-serif"
+            className="text-5xl xs:text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.95] sm:leading-none font-serif uppercase drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]"
             style={{ fontFamily: "Cinzel, serif" }}
           >
             ENHANCEMENT <br className="sm:hidden" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2CE58D] via-[#6EE7B7] to-white drop-shadow-[0_0_35px_rgba(44,229,141,0.5)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2CE58D] via-[#6EE7B7] to-white drop-shadow-[0_0_40px_rgba(44,229,141,0.55)]">
               PEPTIDE
             </span>
           </h1>
 
           <p
-            className="text-[11px] sm:text-sm font-semibold tracking-[0.25em] sm:tracking-[0.35em] text-[#2CE58D]/90 uppercase font-serif pt-1"
+            className="text-[10px] sm:text-sm font-semibold tracking-[0.25em] sm:tracking-[0.35em] text-[#2CE58D]/90 uppercase font-serif pt-1"
             style={{ fontFamily: "Cinzel, serif" }}
           >
             The New Era of Biohacking
           </p>
 
-          <p className="text-sm sm:text-lg text-[#CBD5E1] font-light max-w-2xl mx-auto leading-relaxed pt-2">
+          <p className="text-xs sm:text-lg text-[#CBD5E1] font-light max-w-2xl mx-auto leading-relaxed pt-1">
             {text(
               "Formulasi peptida riset murni berstandar tinggi. Setiap produk diproduksi dengan presisi molekuler dan diverifikasi secara independen oleh Janoshik Analytical (Kemurnian >99%).",
               "Ultra-pure research-grade peptide formulations. Each product is engineered with molecular precision and independently verified by Janoshik Analytical (>99% Purity)."
@@ -90,22 +90,22 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 max-w-md mx-auto"
+          className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 w-full max-w-lg mx-auto"
         >
           <button
             onClick={() => handleScrollTo("catalog")}
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#2CE58D] text-black font-bold text-xs uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_35px_rgba(44,229,141,0.45)] cursor-pointer transform hover:-translate-y-0.5 active:scale-95"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 sm:gap-2.5 px-3 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-[#2CE58D] text-black font-bold text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest hover:bg-white transition-all shadow-[0_0_35px_rgba(44,229,141,0.45)] cursor-pointer transform hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
           >
-            {text("Lihat Katalog Produk", "Explore Products")}
-            <ArrowRight className="w-4 h-4" />
+            <span>{text("Katalog Produk", "Explore Products")}</span>
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
           </button>
 
           <button
             onClick={() => handleScrollTo("calculator")}
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl bg-[#0F1411]/90 border border-[#2CE58D]/40 text-[#2CE58D] font-bold text-xs uppercase tracking-widest hover:bg-[#2CE58D]/10 transition-all cursor-pointer transform hover:-translate-y-0.5 active:scale-95 backdrop-blur-md"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 sm:gap-2.5 px-3 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-[#0F1411]/90 border border-[#2CE58D]/40 text-[#2CE58D] font-bold text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest hover:bg-[#2CE58D]/10 transition-all cursor-pointer transform hover:-translate-y-0.5 active:scale-95 backdrop-blur-md whitespace-nowrap"
           >
-            <FlaskConical className="w-4 h-4 text-[#2CE58D]" />
-            {text("Kalkulator Dosis", "Dose Calculator")}
+            <FlaskConical className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#2CE58D] shrink-0" />
+            <span>{text("Kalkulator Dosis", "Dose Calculator")}</span>
           </button>
         </motion.div>
 
@@ -120,15 +120,14 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
             {/* Subtle Inner Lighting */}
             <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#2CE58D]/20 rounded-full blur-[50px] pointer-events-none group-hover:bg-[#2CE58D]/35 transition-all duration-500" />
 
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#080A09] border border-[#1E2923]">
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#080A09] border border-[#1E2923] p-1 flex items-center justify-center">
               <Image
-                src="/Peptide_hero.webp"
+                src="/peptide_hero2.webp"
                 alt="Enhancement Peptide Hero Showcase"
                 fill
                 priority
-                className="object-cover object-center transform group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                className="object-contain object-center transform group-hover:scale-[1.02] transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080A09] via-transparent to-transparent opacity-80" />
 
               {/* Floating Tech Badges */}
               <div className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#080A09]/80 border border-[#2CE58D]/40 backdrop-blur-md text-[10px] sm:text-xs font-mono font-bold text-[#2CE58D] shadow-lg">

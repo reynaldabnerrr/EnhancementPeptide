@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description: "Premium research compound brand dedicated to precision, purity, and scientific excellence.",
     images: [
       {
-        url: "/Peptide_hero.webp",
+        url: "/peptide_hero2.webp",
         width: 1200,
         height: 630,
         alt: "Enhancement Peptide Hero",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ENHANCEMENT PEPTIDE - The New Era of Biohacking",
     description: "Premium research compound brand dedicated to precision, purity, and scientific excellence.",
-    images: ["/Peptide_hero.webp"],
+    images: ["/peptide_hero2.webp"],
   },
 };
 
