@@ -125,6 +125,7 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
                 src="/peptide_hero2.webp"
                 alt="Enhancement Peptide Hero Showcase"
                 fill
+                sizes="(max-width: 639px) calc(100vw - 3rem), 576px"
                 priority
                 className="object-contain object-center transform group-hover:scale-[1.02] transition-transform duration-700"
               />

@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import AmbientMotionBackground from "@/components/AmbientMotionBackground";
 import { LanguageProvider } from "@/components/LanguageContext";
+import ResearchPurposeWarningModal from "@/components/ResearchPurposeWarningModal";
 
 export default function Home() {
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
@@ -20,6 +21,8 @@ export default function Home() {
   return (
     <LanguageProvider>
       <main className="min-h-screen bg-[#080A09] text-[#F8FAFC] selection:bg-[#2CE58D] selection:text-black relative">
+        <ResearchPurposeWarningModal />
+
         {/* Dynamic Hardware-Accelerated Ambient Motion Background */}
         <AmbientMotionBackground />
 
