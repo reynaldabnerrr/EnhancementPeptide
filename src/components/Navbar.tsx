@@ -105,7 +105,8 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
   const handleNavClick = (id: string) => {
     const target = document.getElementById(id);
     if (target) {
-      window.scrollTo({ top: Math.max(0, target.offsetTop - 75), behavior: "smooth" });
+      const y = target.getBoundingClientRect().top + window.scrollY - 75;
+      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
     }
 
     setMobileMenuOpen(false);
