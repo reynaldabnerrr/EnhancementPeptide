@@ -41,7 +41,7 @@ export default function AmbientMotionBackground() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[#2CE58D]/25 rounded-full blur-[120px]"
+        className="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[#2CE58D]/25 rounded-full blur-[120px] will-change-transform transform-gpu"
       />
 
       {/* Dynamic Glowing Sphere 2 - Right Mid Floating Glow */}
@@ -57,7 +57,7 @@ export default function AmbientMotionBackground() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-[30%] right-[-5%] w-[600px] h-[600px] bg-[#10543F]/40 rounded-full blur-[130px]"
+        className="absolute top-[30%] right-[-5%] w-[600px] h-[600px] bg-[#10543F]/40 rounded-full blur-[130px] will-change-transform transform-gpu"
       />
 
       {/* Dynamic Glowing Sphere 3 - Left Mid Emerald Aura */}
@@ -73,7 +73,7 @@ export default function AmbientMotionBackground() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-[60%] left-[-5%] w-[650px] h-[650px] bg-[#1E8C63]/35 rounded-full blur-[140px]"
+        className="absolute top-[60%] left-[-5%] w-[650px] h-[650px] bg-[#1E8C63]/35 rounded-full blur-[140px] will-change-transform transform-gpu"
       />
 
       {/* Floating Animated Biohacking Particle Dots (Hydration Safe Client Mounted) */}

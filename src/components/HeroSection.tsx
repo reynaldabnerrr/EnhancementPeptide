@@ -89,7 +89,7 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] sm:w-[800px] h-[340px] sm:h-[480px] bg-gradient-to-tr from-[#10543F]/30 via-[#2CE58D]/20 to-transparent rounded-full blur-[110px] sm:blur-[170px] pointer-events-none"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] sm:w-[800px] h-[340px] sm:h-[480px] bg-gradient-to-tr from-[#10543F]/30 via-[#2CE58D]/20 to-transparent rounded-full blur-[110px] sm:blur-[170px] pointer-events-none will-change-transform transform-gpu"
       />
       
       {/* Technical Background Grid Pattern */}
@@ -197,27 +197,28 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute inset-0 m-auto w-full h-full bg-[#2CE58D]/20 blur-3xl rounded-3xl pointer-events-none"
+            className="absolute inset-0 m-auto w-full h-full bg-[#2CE58D]/20 blur-3xl rounded-3xl pointer-events-none will-change-transform transform-gpu"
           />
 
           {/* Ambient Floating Motion Container */}
           <motion.div
             animate={reducedMotion ? undefined : { y: [0, -8, 0], rotateZ: [0, 0.3, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="will-change-transform transform-gpu"
           >
-            {/* 3D Rotated Card Frame */}
+            {/* 3D Rotated Card Frame - Optimized for Chrome Graphics Engine */}
             <motion.div
               style={reducedMotion ? undefined : { rotateX, rotateY, transformStyle: "preserve-3d" }}
-              className="relative rounded-3xl bg-gradient-to-b from-[#131E17] via-[#0E1510] to-[#070A08] p-3.5 sm:p-5 border border-[#2CE58D]/35 shadow-[0_30px_90px_rgba(0,0,0,0.95)] backdrop-blur-2xl group overflow-hidden"
+              className="relative rounded-3xl bg-gradient-to-b from-[#131E17]/95 via-[#0E1510]/95 to-[#070A08]/95 p-3.5 sm:p-5 border border-[#2CE58D]/35 shadow-[0_30px_90px_rgba(0,0,0,0.95)] group [backface-visibility:hidden] will-change-transform transform-gpu"
             >
               {/* Soft Refractive Glass Sheen overlay */}
               <motion.div
-                className="absolute inset-0 rounded-3xl pointer-events-none opacity-60 transition-opacity duration-300"
+                className="absolute inset-0 rounded-3xl pointer-events-none opacity-60 transition-opacity duration-300 overflow-hidden"
                 style={{ background: glassSheen }}
               />
 
               {/* Main Image Frame with Deep Z Parallax */}
-              <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#050706] border border-[#1E2923] p-1 flex items-center justify-center [transform:translateZ(40px)] shadow-[0_20px_50px_rgba(0,0,0,0.8)] group-hover:border-[#2CE58D]/45 transition-colors duration-500">
+              <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#050706] border border-[#1E2923] p-1 flex items-center justify-center [transform:translateZ(40px)] [transform-style:preserve-3d] shadow-[0_20px_50px_rgba(0,0,0,0.8)] group-hover:border-[#2CE58D]/45 transition-colors duration-500">
                 
                 {/* High-Res Hero Image with Smooth Scale Zoom */}
                 <Image
@@ -232,7 +233,7 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
                 {/* LAYER 1: Top Left Floating Live Metric Badge (High Z Depth) */}
                 <motion.div
                   style={{ transform: `translateZ(75px)` }}
-                  className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#080A09]/90 border border-[#2CE58D]/45 backdrop-blur-xl text-[10px] sm:text-xs font-mono font-bold text-[#2CE58D] shadow-[0_8px_20px_rgba(0,0,0,0.8)]"
+                  className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#080A09]/95 border border-[#2CE58D]/45 text-[10px] sm:text-xs font-mono font-bold text-[#2CE58D] shadow-[0_8px_20px_rgba(0,0,0,0.8)] [backface-visibility:hidden]"
                 >
                   <span className="w-2 h-2 rounded-full bg-[#2CE58D] animate-ping shrink-0" />
                   <Activity className="w-3.5 h-3.5 text-[#2CE58D]" />
@@ -242,7 +243,7 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
                 {/* LAYER 2: Bottom Full-Width Laboratory Bar (Maximum Z Depth) */}
                 <motion.div
                   style={{ transform: `translateZ(95px)` }}
-                  className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 p-2.5 sm:p-3 rounded-xl bg-[#0A0F0C]/95 border border-[#2CE58D]/30 backdrop-blur-xl shadow-[0_12px_30px_rgba(0,0,0,0.9)]"
+                  className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 p-2.5 sm:p-3 rounded-xl bg-[#0A0F0C]/95 border border-[#2CE58D]/30 shadow-[0_12px_30px_rgba(0,0,0,0.9)] [backface-visibility:hidden]"
                 >
                   <div className="flex items-center gap-2">
                     <Award className="w-4 h-4 text-[#2CE58D] shrink-0" />
