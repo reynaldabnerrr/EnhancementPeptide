@@ -41,7 +41,7 @@ export default function Home() {
         {/* Interactive Photorealistic Specimen Inspector with Scroll Reveal */}
         <section id="specimen" className="py-12 bg-[#080A09]/60 backdrop-blur-sm border-y border-[#1E2923] relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal direction="up" duration={0.7}>
+            <ScrollReveal direction="right" duration={0.9}>
               <Interactive3DVial />
             </ScrollReveal>
           </div>
@@ -49,7 +49,7 @@ export default function Home() {
 
         {/* Scientific Compound Catalog with Scroll Reveal */}
         <div className="relative z-10">
-          <ScrollReveal direction="up" duration={0.8} delay={0.1}>
+          <ScrollReveal direction="up" duration={1}>
             <CompoundCatalog
               onOpenCalculator={() => setIsCalculatorOpen(true)}
               onOpenInquiry={() => setIsInquiryOpen(true)}
@@ -60,7 +60,7 @@ export default function Home() {
         {/* Dosing Calculator Section with Scroll Reveal */}
         <section id="calculator" className="py-20 bg-[#080A09]/60 backdrop-blur-sm relative border-y border-[#1E2923] z-10">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal direction="up" duration={0.7}>
+            <ScrollReveal direction="left" duration={0.9}>
               <ReconstitutionCalculator />
             </ScrollReveal>
           </div>
@@ -68,14 +68,14 @@ export default function Home() {
 
         {/* Brand Quality & Laboratory Standards Grid with Scroll Reveal */}
         <div className="relative z-10">
-          <ScrollReveal direction="up" duration={0.8}>
+          <ScrollReveal direction="up" duration={1}>
             <StandardsGrid />
           </ScrollReveal>
         </div>
 
         {/* Footer with Scroll Reveal */}
         <div className="relative z-10">
-          <ScrollReveal direction="none" duration={0.6}>
+          <ScrollReveal direction="none" duration={0.8} parallax={false}>
             <Footer />
           </ScrollReveal>
         </div>
