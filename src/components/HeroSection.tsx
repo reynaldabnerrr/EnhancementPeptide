@@ -2,7 +2,13 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { ArrowRight, ShieldCheck, FlaskConical, Award, Activity, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 
@@ -13,6 +19,36 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSectionProps) {
   const { text } = useLanguage();
+  const reducedMotion = useReducedMotion();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(pointerY, [-0.5, 0.5], [8, -8]), {
+    stiffness: 150,
+    damping: 22,
+  });
+  const rotateY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-10, 10]), {
+    stiffness: 150,
+    damping: 22,
+  });
+  const lightX = useTransform(pointerX, [-0.5, 0.5], [25, 75]);
+  const lightY = useTransform(pointerY, [-0.5, 0.5], [25, 75]);
+  const sheenBackground = useTransform(
+    [lightX, lightY],
+    ([x, y]) => `radial-gradient(circle at ${x}% ${y}%, rgba(110,231,183,0.32), transparent 38%)`,
+  );
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (reducedMotion || event.pointerType === "touch") return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
+    pointerY.set((event.clientY - bounds.top) / bounds.height - 0.5);
+  };
+
+  const resetPointer = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
 
   const handleScrollTo = (id: string) => {
     const target = document.getElementById(id);
@@ -114,13 +150,26 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
           initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3 }}
-          className="relative max-w-xl mx-auto pt-4"
+          className="relative max-w-xl mx-auto pt-4 [perspective:1200px]"
+          onPointerMove={handlePointerMove}
+          onPointerLeave={resetPointer}
         >
-          <div className="relative rounded-3xl bg-gradient-to-b from-[#141E18] to-[#0A0E0B] p-3 sm:p-5 border border-[#2CE58D]/30 shadow-[0_20px_60px_rgba(0,0,0,0.9)] backdrop-blur-xl group overflow-hidden">
-            {/* Subtle Inner Lighting */}
-            <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#2CE58D]/20 rounded-full blur-[50px] pointer-events-none group-hover:bg-[#2CE58D]/35 transition-all duration-500" />
+          <motion.div
+            animate={reducedMotion ? undefined : { y: [0, -8, 0], rotateZ: [0, 0.35, 0] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <motion.div
+              style={reducedMotion ? undefined : { rotateX, rotateY, transformStyle: "preserve-3d" }}
+              className="relative rounded-3xl bg-gradient-to-b from-[#141E18] to-[#0A0E0B] p-3 sm:p-5 border border-[#2CE58D]/30 shadow-[0_28px_80px_rgba(0,0,0,0.9)] backdrop-blur-xl group"
+            >
+            <motion.div
+              className="absolute inset-0 rounded-3xl pointer-events-none opacity-50"
+              style={{ background: sheenBackground }}
+            />
 
-            <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#080A09] border border-[#1E2923] p-1 flex items-center justify-center">
+            <div className="absolute inset-x-12 -bottom-8 h-14 rounded-full bg-[#2CE58D]/20 blur-2xl pointer-events-none [transform:translateZ(-70px)]" />
+
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#080A09] border border-[#1E2923] p-1 flex items-center justify-center [transform:translateZ(35px)] shadow-[0_16px_40px_rgba(0,0,0,0.55)]">
               <Image
                 src="/peptide_hero2.webp"
                 alt="Enhancement Peptide Hero Showcase"
@@ -148,7 +197,8 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
                 </span>
               </div>
             </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
 
         {/* 3 Pillar Trust Features Grid */}

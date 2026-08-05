@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <LanguageProvider>
-      <main className="min-h-screen bg-[#080A09] text-[#F8FAFC] selection:bg-[#2CE58D] selection:text-black relative">
+      <main className="min-h-screen bg-[#080A09] text-[#F8FAFC] selection:bg-brand-neon selection:text-black relative">
         <ResearchPurposeWarningModal />
 
         {/* Dynamic Hardware-Accelerated Ambient Motion Background */}
@@ -75,7 +75,7 @@ export default function Home() {
 
         {/* Footer with Scroll Reveal */}
         <div className="relative z-10">
-          <ScrollReveal direction="none" duration={0.8} parallax={false}>
+          <ScrollReveal direction="none" duration={0.8}>
             <Footer />
           </ScrollReveal>
         </div>
