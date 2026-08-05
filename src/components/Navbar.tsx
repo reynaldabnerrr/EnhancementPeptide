@@ -103,17 +103,13 @@ export default function Navbar({ onOpenCalculator, onOpenInquiry }: NavbarProps)
   );
 
   const handleNavClick = (id: string) => {
+    const target = document.getElementById(id);
+    if (target) {
+      window.scrollTo({ top: Math.max(0, target.offsetTop - 75), behavior: "smooth" });
+    }
+
     setMobileMenuOpen(false);
     setActiveSection(id);
-
-    requestAnimationFrame(() => {
-      const target = document.getElementById(id);
-      if (target) {
-        const yOffset = -75;
-        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-      }
-    });
   };
 
   return (
