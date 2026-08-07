@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <LanguageProvider>
-      <main className="min-h-screen bg-[#080A09] text-[#F8FAFC] selection:bg-brand-neon selection:text-black relative">
+      <main className="min-h-screen bg-[#080A09] text-[#F8FAFC] selection:bg-brand-neon selection:text-black relative overflow-x-hidden w-full max-w-full">
         <ResearchPurposeWarningModal />
 
         {/* Dynamic Hardware-Accelerated Ambient Motion Background */}

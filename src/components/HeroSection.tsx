@@ -89,7 +89,7 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] sm:w-[800px] h-[340px] sm:h-[480px] bg-gradient-to-tr from-[#10543F]/30 via-[#2CE58D]/20 to-transparent rounded-full blur-[110px] sm:blur-[170px] pointer-events-none will-change-transform transform-gpu"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] xs:w-[360px] sm:w-[800px] max-w-full h-[340px] sm:h-[480px] bg-gradient-to-tr from-[#10543F]/30 via-[#2CE58D]/20 to-transparent rounded-full blur-[110px] sm:blur-[170px] pointer-events-none will-change-transform transform-gpu"
       />
       
       {/* Technical Background Grid Pattern */}
@@ -104,14 +104,14 @@ export default function HeroSection({ onOpenCalculator, onOpenInquiry }: HeroSec
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-[#0F1411]/90 border border-[#2CE58D]/40 text-[#2CE58D] text-xs font-mono shadow-[0_0_25px_rgba(44,229,141,0.2)] backdrop-blur-md max-w-full"
+          className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full bg-[#0F1411]/90 border border-[#2CE58D]/40 text-[#2CE58D] text-xs font-mono shadow-[0_0_25px_rgba(44,229,141,0.2)] backdrop-blur-md max-w-full"
         >
           <span className="relative flex h-2 w-2 shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2CE58D] opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2CE58D]"></span>
           </span>
           <ShieldCheck className="w-4 h-4 text-[#2CE58D] shrink-0" />
-          <span className="uppercase font-bold text-[9px] xs:text-[10.5px] sm:text-xs tracking-wider whitespace-nowrap">
+          <span className="uppercase font-bold text-[8.5px] xs:text-[10px] sm:text-xs tracking-wider whitespace-normal sm:whitespace-nowrap">
             {text("JANOSHIK ANALYTICAL VERIFIED • KEMURNIAN >99.4%", "JANOSHIK ANALYTICAL VERIFIED • PURITY >99.4%")}
           </span>
           <Sparkles className="w-3.5 h-3.5 text-[#2CE58D] shrink-0 opacity-80" />
